@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="inner-div">
+    <h1>Teams Shedule</h1>
+    <p>Please enter the numbers of teams in your tournament for making shedule  </p>
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="form">
+      
+        
+        <input type="number" id="inputValue"  formControlName="inputValue" placeholder="Teams Count" />
+        <div  class="ErrorMessage"*ngIf="myForm.controls['inputValue'].errors && myForm.controls['inputValue'].errors['notEven'] || myForm.controls['inputValue'].errors && myForm.controls['inputValue'].errors['min']">
+          Only Greater then 0 or Even numbers are allowed.
+        </div>
+
+      
+      <button type="submit">Submit</button>
+    </form>
+    
+    <div class="shedule" *ngIf="!nextRound && teamsArray.length>=1">
+      
+      <ul>
+        <li *ngFor="let item of teamsArray">{{item}}</li>
+       
+       
+      </ul>
+    </div>
+    <div class="shedule" *ngIf="nextRound">
+      <ul>
+        <li *ngFor="let item of nextRoundTeams">{{item}}</li>
+       
+       
+      </ul>
+    </div>
+  
+    <hr class="hr">
+    <button (click)="  NextRoundTeams()" class="btn"> Next Round </button>
+  </div>
+ 
+</div>
